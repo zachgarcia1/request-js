@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request JS</title>
+</head>
+<body>
+
+    <div id="request">
+
+    </div>
+
+    <script src="request.js"></script>
+    <script>
+        var request = new HttpClient();
+
+        request.get('http://swapi.co/api/starships/9/', function(response){
+            console.log(response);
+        });
+    </script>
+</body>
+</html>
