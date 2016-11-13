@@ -1,21 +1,38 @@
-var HttpClient = function () {
-    this.get = function (url, callback) {
-        var HttpRequest = new XMLHttpRequest();
-        HttpRequest.onreadystatechange = function () {
-            if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
-                callback(HttpRequest.responseText);
+/**
+ * Vanilla js for http requests
+ * GET | POST
+ * @constructor
+ */
+var Request = function () {
+    this.onReadyStateChange = function (request, callback) {
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200)
+                callback(request.responseText);
         }
-        HttpRequest.open('GET', url, true);
-        HttpRequest.send(null);
-    };
-
-    this.post = function (url, data, callback) {
-        var HttpRequest = new XMLHttpRequest();
-        HttpRequest.onreadystatechange = function () {
-            if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
-                callback(HttpRequest.responseText);
-        }
-        HttpRequest.open('POST', url, true);
-        HttpRequest.send(data);
     };
 }
+
+/**
+ * Get Request
+ * @param url
+ * @param callback
+ */
+Request.prototype.get = function (url, callback) {
+    request = new XMLHttpRequest();
+    this.onReadyStateChange(request, callback);
+    request.open('GET', url, true);
+    request.send(null);
+}
+
+/**
+ * Post Request
+ * @param url
+ * @param data
+ * @param callback
+ */
+Request.prototype.post = function (url, data, callback) {
+    request = new XMLHttpRequest();
+    this.onReadyStateChange(request, callback);
+    request.open('POST', url, true);
+    request.send(JSON.stringify(data));
+};

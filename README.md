@@ -11,4 +11,9 @@ var request = new HttpClient();
 request.get('http://exampleurl.com', function(response){
     console.log(response);
 });
+ 
+
+request.post('http://exampleurl.com', function(response){
+    console.log(response);
+});
 ```
